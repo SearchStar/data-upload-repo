@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<servlet>
+		<servlet-name>Google_Analytics_Data_Upload</servlet-name>
+		<servlet-class>com.google.upload.Google_Analytics_Data_UploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Google_Analytics_Data_Upload</servlet-name>
+		<url-pattern>/google_analytics_data_upload</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>NewSetup</servlet-name>
+		<servlet-class>com.google.serverlet.NewSetup</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewSetup</servlet-name>
+		<url-pattern>/newsetup</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AddAccount</servlet-name>
+		<servlet-class>com.google.serverlet.AddAccount</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddAccount</servlet-name>
+		<url-pattern>/addaccount</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+        <filter-name>ObjectifyFilter</filter-name>
+        <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	        <filter-name>ObjectifyFilter</filter-name>
+	        <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
