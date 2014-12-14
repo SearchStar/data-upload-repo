@@ -22,6 +22,11 @@ public class KeywordPerformanceReportBuilder {
 	static String bingCampaignId;
 	static String bingDeveloperToken;
 
+	/**
+	 * @return
+	 * @param
+	 * @throws
+	 */
 	public String runReport(AnalyticsProfile analytics_profile) throws Exception {
 		
 		this.bingApiUsername = analytics_profile.getBingApiName();
@@ -66,11 +71,21 @@ public class KeywordPerformanceReportBuilder {
 		return newurl;
 	}
 	
+	/**
+	 * @return
+	 * @param
+	 * @throws
+	 */
 	public static MimeHeaders buildMimeHeader(SOAPMessage soapMessage) {
 		MimeHeaders headers = soapMessage.getMimeHeaders();
 		return headers;
 	}
 
+	/**
+	 * @return
+	 * @param
+	 * @throws
+	 */
 	public static SOAPEnvelope buildSoapBody(SOAPEnvelope envelope)
 			throws SOAPException {
 		SOAPBody soapBody = envelope.getBody();
@@ -189,6 +204,11 @@ public class KeywordPerformanceReportBuilder {
 		return envelope;
 	}
 
+	/**
+	 * @return
+	 * @param
+	 * @throws
+	 */
 	public static SOAPEnvelope buildSoapBodyPolling(SOAPEnvelope envelope,
 			String reportId) throws SOAPException {
 		SOAPBody soapBody = envelope.getBody();
@@ -205,6 +225,11 @@ public class KeywordPerformanceReportBuilder {
 		return envelope;
 	}
 
+	/**
+	 * @return
+	 * @param
+	 * @throws
+	 */
 	public static SOAPEnvelope buildSoapHeader(SOAPEnvelope envelope)
 			throws SOAPException {
 		envelope.getHeader().detachNode();
@@ -228,6 +253,12 @@ public class KeywordPerformanceReportBuilder {
 	/*
 	 * takes the SOAP message and returns the poll response.
 	 */
+	
+	/**
+	 * @return
+	 * @param
+	 * @throws
+	 */
 	static String getStatus(SOAPMessage soapMeassage) throws SOAPException {
 		return soapMeassage.getSOAPBody().getTextContent();
 	}
@@ -235,6 +266,12 @@ public class KeywordPerformanceReportBuilder {
 	/*
 	 * takes the report request as a SOAP xml, parses the xml and returns the
 	 * download url.
+	 */
+	
+	/**
+	 * @return
+	 * @param
+	 * @throws
 	 */
 	static String getUrl(SOAPMessage soapMeassage) throws SOAPException {
 		String url = soapMeassage.getSOAPBody().getFirstChild().getFirstChild()
@@ -245,6 +282,12 @@ public class KeywordPerformanceReportBuilder {
 	/*
 	 * Creates a Soap connection object
 	 */
+	
+	/**
+	 * @return
+	 * @param
+	 * @throws
+	 */
 	public static SOAPConnection openSoapConnection() throws SOAPException {
 		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory
 				.newInstance();
@@ -253,6 +296,11 @@ public class KeywordPerformanceReportBuilder {
 		return soapConnection;
 	}
 
+	/**
+	 * @return
+	 * @param
+	 * @throws
+	 */
 	public static SOAPEnvelope openSoapEnvelope(SOAPPart soapPart)
 			throws SOAPException {
 		SOAPEnvelope envelope = soapPart.getEnvelope();
@@ -267,6 +315,12 @@ public class KeywordPerformanceReportBuilder {
 	 * A new SOAPMessage object contains the following by default: A SOAPPart
 	 * object A SOAPEnvelope object A SOAPBody object A SOAPHeader object
 	 */
+	
+	/**
+	 * @return
+	 * @param
+	 * @throws
+	 */
 	public static SOAPMessage openSoapMessage() throws SOAPException {
 		MessageFactory messageFactory = MessageFactory.newInstance();
 		SOAPMessage soapMessage = messageFactory.createMessage();
@@ -276,17 +330,33 @@ public class KeywordPerformanceReportBuilder {
 	/*
 	 * Adds a SOAP part to the SOAPMessage
 	 */
+	
+	/**
+	 * @return
+	 * @param
+	 * @throws
+	 */
 	public static SOAPPart openSoapPart(SOAPMessage soapMessage) {
 		SOAPPart soapPart = soapMessage.getSOAPPart();
 		return soapPart;
 	}
 
+	/**
+	 * @return
+	 * @param
+	 * @throws
+	 */
 	public static void PollGenerateReport(MimeHeaders headers,
 			SOAPMessage soapMessage) throws Exception {
 		headers.addHeader("soapAction", "PollGenerateReport");
 		soapMessage.saveChanges();
 	}
 
+	/**
+	 * @return
+	 * @param
+	 * @throws
+	 */
 	public static SOAPMessage PollGenerateReport(String reportID)
 			throws RemoteException, Exception {
 		SOAPConnection soapConnection1 = openSoapConnection();
@@ -304,6 +374,11 @@ public class KeywordPerformanceReportBuilder {
 		return soapResponse1;
 	}
 
+	/**
+	 * @return
+	 * @param
+	 * @throws
+	 */
 	private static void printSOAPResponse(SOAPMessage soapResponse)
 			throws Exception {
 		TransformerFactory transformerFactory = TransformerFactory
@@ -314,11 +389,21 @@ public class KeywordPerformanceReportBuilder {
 		transformer.transform(sourceContent, result);
 	}
 
+	/**
+	 * @return
+	 * @param
+	 * @throws
+	 */
 	public static SOAPMessage soapResponse(SOAPMessage soapMessage,
 			SOAPConnection soapConnection) throws SOAPException {
 		return soapConnection.call(soapMessage, url);
 	}
 
+	/**
+	 * @return
+	 * @param
+	 * @throws
+	 */
 	public static void SubmitGenerateReport(MimeHeaders headers,
 			SOAPMessage soapMessage) throws Exception {
 		headers.addHeader("soapAction", "SubmitGenerateReport");

@@ -25,11 +25,9 @@ public class Profile {
 	String refToken;
 
 	public Profile() {
-
 	}
 
 	public Profile(JSONObject jsonObj) throws JSONException {
-
 		this.name = getJsonValue("name", jsonObj);
 		this.googleId = getJsonValue("id", jsonObj);
 		this.given_name = getJsonValue("given_name", jsonObj);
@@ -42,60 +40,45 @@ public class Profile {
 	}
 
 	/**
-	 * 
-	 * @return
-	 * @param
-	 * @throws
+	 * @return users email
 	 */
 	public String getEmail() {
 		return this.email;
 	}
 
 	/**
-	 * 
-	 * @return
-	 * @param
-	 * @throws
+	 * @return users family name
 	 */
 	public String getFamily_name() {
 		return this.family_name;
 	}
 
 	/**
-	 * 
-	 * @return
-	 * @param
-	 * @throws
+	 * @return users gender
 	 */
 	public String getGender() {
 		return this.gender;
 	}
 
 	/**
-	 * 
-	 * @return
-	 * @param
-	 * @throws
+	 * @return users first name
 	 */
 	public String getGiven_name() {
 		return this.given_name;
 	}
 
 	/**
-	 * 
-	 * @return
-	 * @param
-	 * @throws
+	 * @return users google id
 	 */
 	public String getGoogleId() {
 		return this.googleId;
 	}
 
 	/**
-	 * 
-	 * @return
-	 * @param
-	 * @throws
+	 * @param name of field from which value should be retrieved
+	 * @param json object
+	 * @return field value
+	 * @throws JSONException
 	 */
 	public String getJsonValue(String value, JSONObject json)
 			throws JSONException {
@@ -104,60 +87,43 @@ public class Profile {
 	}
 
 	/**
-	 * 
-	 * @return
-	 * @param
-	 * @throws
+	 * @return users profile link
 	 */
 	public String getLink() {
 		return this.link;
 	}
 
 	/**
-	 * 
-	 * @return
-	 * @param
-	 * @throws
+	 * @return user location
 	 */
 	public String getLocale() {
 		return this.locale;
 	}
 
 	/**
-	 * 
-	 * @return
-	 * @param
-	 * @throws
+	 * @return users name
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * 
-	 * @return
-	 * @param
-	 * @throws
+	 * @return users picture
 	 */
 	public String getPicture() {
 		return this.picture;
 	}
 
 	/**
-	 * 
-	 * @return
-	 * @param
-	 * @throws
+	 * @return users refresh token
 	 */
 	public String getRefToken() {
 		return this.refToken;
 	}
 
 	/**
-	 * 
-	 * @return
-	 * @param
-	 * @throws
+	 * sets the refresh token
+	 * @param Refresh Token
 	 */
 	public void setRefreshToken(String refreshtoken) {
 		this.refToken = refreshtoken;

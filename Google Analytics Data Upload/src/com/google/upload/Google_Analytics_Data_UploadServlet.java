@@ -3,8 +3,6 @@ package com.google.upload;
 import java.io.IOException;
 import javax.servlet.http.*;
 
-import java.util.ArrayList;
-
 import com.google.analytics.AnalyticsProfile;
 import com.google.analytics.DataImport;
 import com.google.analytics.UploadFormater;
@@ -37,7 +35,6 @@ public class Google_Analytics_Data_UploadServlet extends HttpServlet {
 			try {
 				printmyarray = new UploadFormater().unzipAndFormatData(reporturl);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	

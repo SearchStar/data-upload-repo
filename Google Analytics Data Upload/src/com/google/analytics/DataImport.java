@@ -35,19 +35,17 @@ public class DataImport {
 	
 	private String clientId;
 	private String clientSecret;
-	
-	
 
 	/**
-	 * 
-	 * @param
-	 * @param 
+	 * Uploads data to Google Analytics Account
+	 * @param Analytics
+	 * @param csv array
 	 */
-	private static void updateAnalytics(Analytics analytics, String printmyarray){
-		InputStream is = new ByteArrayInputStream(printmyarray.getBytes() );
+	private static void updateAnalytics(Analytics analytics, String csvArray){
+		InputStream is = new ByteArrayInputStream(csvArray.getBytes() );
 		InputStreamContent mediaContent = new InputStreamContent(
 				"application/octet-stream", is);
-		mediaContent.setLength(printmyarray.length());
+		mediaContent.setLength(csvArray.length());
 		try {
 			Upload upload = analytics
 					.management()
@@ -61,29 +59,24 @@ public class DataImport {
 	}
 
 	/**
-	 * 
-	 * @param
-	 * @param
+	 * gets the Google credential for Google Analytics api accesss
+	 * @param csv array
+	 * @param Analytics Profile
 	 */
-	public void newUpload(String printmyarray, AnalyticsProfile analytics_profile) {
-		setCredentials(analytics_profile);
-		
-		httpTransport = new NetHttpTransport();
-		
+	public void newUpload(String csvArray, AnalyticsProfile analytics_profile) {
+		setCredentials(analytics_profile);	
+		httpTransport = new NetHttpTransport();	
 		GoogleCredential googleCredential = GoogleAuthHelper.createCredentialWithRefreshToken(httpTransport,
-				JSON_FACTORY, new TokenResponse().setRefreshToken(refreshToken), clientId, clientSecret);
-		
+				JSON_FACTORY, new TokenResponse().setRefreshToken(refreshToken), clientId, clientSecret);	
 		Analytics analytics = new Analytics.Builder(httpTransport,
 				JSON_FACTORY, googleCredential).setApplicationName(APPLICATION_NAME)
 				.build();
-		
-			updateAnalytics(analytics, printmyarray);
-
+			updateAnalytics(analytics, csvArray);
 	}
 	
 	/**
-	 * 
-	 * @param
+	 * sets the required credentials in this instance to access the api and upload the data
+	 * @param Analytics Profile
 	 */
 	public void setCredentials(AnalyticsProfile analytics_profile) {
 		setAnalyticsCredentials(analytics_profile);
@@ -91,8 +84,8 @@ public class DataImport {
 	}
 	
 	/**
-	 * 
-	 * @param
+	 * sets the analytics profile fields required by this instance to upload data 
+	 * @param Analytics Profile
 	 */
 	public void setAnalyticsCredentials(AnalyticsProfile analytics_profile) {
 		this.accountId = analytics_profile.getGaAccountId();
@@ -106,12 +99,10 @@ public class DataImport {
 	}
 	
 	/**
-	 * 
+	 * gets the api client credentials from the data store and sets them in this instance
 	 */
-	public void setClientCredential() {
-		
+	public void setClientCredential() {		
 		LoadType<ClientCredentials> credentials = ofy().load().type(ClientCredentials.class);
-		
 		for(ClientCredentials credential : credentials) {
 			this.clientId = credential.getclientId();
 			this.clientSecret = credential.getClientSecret();
